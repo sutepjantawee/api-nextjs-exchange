@@ -3,8 +3,10 @@ import { w3cwebsocket as WebSocket } from "websocket";
 import Image from "next/image";
 import btc from "../img/opengraph.png";
 import eth from "../img/pngegg.png";
-const bitstampETHa = new WebSocket("wss://ws.bitstamp.net");
-const ftxa = new WebSocket("wss://ftx.com/ws/");
+
+// const bitstampETHa = 
+// const ftxa = 
+
 function App() {
   //give an initial state so that the data won't be undefined at start
   const [bidsftx, setBidsftx] = useState([0]);
@@ -14,8 +16,8 @@ function App() {
   const [bidsBinance, setBidsBinance] = useState([]);
   const [bidsSatangPro, setBidsSatangPro] = useState([]);
 
-  const ftxEth = ftxa;
-  const bitstampEth = bitstampETHa;
+  const ftxEth = new WebSocket("wss://ftx.com/ws/");
+  const bitstampEth = new WebSocket("wss://ws.bitstamp.net");
   const [bidsftxETH, setBidsftxETH] = useState([0]);
   const [bitstampETH, setBidsstampETH] = useState([0]);
   const [bidsBitkupETH, setBidsbitkupETH] = useState([]);
@@ -55,10 +57,10 @@ function App() {
     data: { channel: "order_book_ethusdt" },
   };
 
-  const apiCallFtx = {
+  const apiCallFtx = {  
     op: "subscribe",
     channel: "ticker",
-    market: "BTC-PERP",
+    market: "BTC-PERP", 
   };
   const apiCallFtxETH = {
     op: "subscribe",
@@ -78,10 +80,8 @@ function App() {
       } catch (err) {}
     };
     bitkubEth.onmessage = (event) => {
-      console.log(event.data);
       try {
         const json = JSON.parse(event.data);
-
         setBidsbitkupETH(json.rat);
       } catch (err) {}
     };
@@ -205,7 +205,7 @@ function App() {
 
   return (
     <div>
-      <div className="text-center text-3xl m-10 text-zinc-700">
+      <div className="text-center text-3xl pt-10 pb-5 text-zinc-700">
         Exchange Compare Cryptocurrency Prices
       </div>
 

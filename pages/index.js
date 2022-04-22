@@ -1,9 +1,20 @@
 import Crypto from "./component/Crypto";
+import Graph from "./component/graph"
+import Api from "./component/API"
 
-export default function Home() {
+import Coin from "./componentCoin.js/coin"
+import TableCoin from "./componentCoin.js/TableCoin"
+export default function Home({coins}) {
+  
   return (
-    <div className="">
-      <Crypto />
+    <div className="bg-slate-200"> 
+  
+  {/* <Coin/> */}
+ {/* <TableCoin/> */}
+
+    <Api />
+      {/* <Crypto /> */}
+      {/* <Graph/> */}
     </div>
   );
 }
